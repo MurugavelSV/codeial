@@ -1,0 +1,18 @@
+{
+  "name": "codeial",
+  "version": "1.0.0",
+  "description": "A web app to interact with everyone similar to a social media web page",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "social"
+  ],
+  "author": "Murugavel V",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
