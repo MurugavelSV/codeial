@@ -2,17 +2,23 @@ const Profile = require('../models/user');
 
 module.exports.profile = (req, res) => {
     return res.render('user_profile', {
-        title: 'User Profile'
+        title: 'User Profile',
     });
 }
 
 module.exports.signup = (req, res) => {
+    if(req.isAuthenticated()){
+        return res.redirect('/user/profile');
+    }
     return res.render('signup', {
         title: 'signup'
     });
 };
 
 module.exports.login = (req, res) => {
+    if(req.isAuthenticated()){
+        return res.redirect('/user/profile');
+    }
     return res.render('login', {
         title: 'login page'
     });

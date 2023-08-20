@@ -7,7 +7,7 @@ const passport = require('passport');
 const userController = require('../controllers/user_controller');
 const urlParser = express.urlencoded({extended: false});
 
-router.get('/profile', userController.profile);
+router.get('/profile',passport.checkAuthenticated, userController.profile);
 router.get('/signup', userController.signup);
 router.get('/login', userController.login);
 router.post('/create', urlParser, userController.create);
