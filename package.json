@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "home-scss": "sass --no-source-map --watch assets/scss/home.scss assets/css/home.css", 
+    "layout-scss": "sass --no-source-map --watch assets/scss/layout.scss assets/css/layout.css",
+    "dev": "npm-run-all --parallel home-scss layout-scss start", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,6 +24,10 @@
     "express-session": "^1.17.3",
     "mongoose": "^7.4.3",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "sass": "^1.66.1"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }
