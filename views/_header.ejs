@@ -2,13 +2,13 @@
 
     <div id="nav-container">
         <div id="logo-container">
-            <p id="logo-txt">codeial</p>
+            <p id="logo-txt" class="clr-white">codeial</p>
         </div>
-        <div id="other-container">
+        <div id="other-container" class="clr-white">
             <ul>
                 <% if(locals.user){ %>
                     <li>
-                        <%= user.name %>
+                        <a href="/user/profile"><%= user.name %></a>
                     </li>
                     <li>
                         <a href="/user/sign-out">Sign out</a>

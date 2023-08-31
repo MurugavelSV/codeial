@@ -1,11 +1,14 @@
-<form action="/user/create-session" method="post">
-    <div>
+<link rel="stylesheet" href="/css/login.css">
+<div id="app">
+    <form action="/user/create-session" method="post">
         <div>
-            <input type="email" name="email" id="user-email" placeholder="Email" required>
+            <div>
+                <input type="email" name="email" id="user-email" placeholder="Email" required>
+            </div>
+            <div>
+                <input type="password" name="password" id="user-pswd" placeholder="Password" required>
+            </div>
+            <button type="submit">Submit</button>
         </div>
-        <div>
-            <input type="password" name="password" id="user-pswd" placeholder="Password" required>
-        </div>
-        <button type="submit">Submit</button>
-    </div>
-</form>
+    </form>
+</div>

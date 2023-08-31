@@ -1,15 +1,32 @@
 $white-color : white;
 
+.clr-white{
+    color: $white-color;
+}
+
 body{
     margin: 0;
     font-family: sans-serif;
 }
 
+a{
+    text-decoration: none;
+    color: $white-color;
+}
+
+ul{
+    list-style: none;
+}
+
+#app{
+    height: 100vh;
+}
 
 #nav-container{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 1.1rem;
     padding: 0px 10px;
     background-color: rgb(55, 191, 236);
 
@@ -29,14 +46,17 @@ body{
     }
 }
 
-    a{
-        text-decoration: none;
-        color: $white-color;
-    }
-
 #logo-txt{
-    color: $white-color;
     margin: 0.6rem 0;
     font-weight: bold;
     font-size: 1.6rem;
+}
+
+#footer-container{
+    background-color: rgba(128, 128, 128, 0.8);
+    display: flex;
+
+    ul > li{
+        margin-bottom: 0.3rem;
+    }
 }
