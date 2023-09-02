@@ -1,5 +1,15 @@
+const Post = require('../models/post');
+
 module.exports.home = (req, res) => {
-    return res.render('home', {
-        title: 'Codeial'
-    });
+    (async () => {
+        try{
+            const posts = await Post.find({}).populate('user');
+            return res.render('home', {
+                title: 'Codeial',
+                postList: posts
+            });
+        }catch(err){
+            console.log(`Error: ${err.message}`);
+        }
+    })();
 }
