@@ -17,7 +17,7 @@ module.exports.signup = (req, res) => {
 
 module.exports.login = (req, res) => {
     if(req.isAuthenticated()){
-        return res.redirect('/user/profile');
+        return res.redirect('/');
     }
     return res.render('login', {
         title: 'Codeial | Login'

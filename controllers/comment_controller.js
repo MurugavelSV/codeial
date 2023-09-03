@@ -20,3 +20,22 @@ module.exports.createComment = (req, res) => {
         };
     })();
 }
+
+module.exports.destroyComment = (req, res) => {
+    (async () => {
+        try{
+            const comment = await Comment.findById(req.query.commentId);
+            if(comment){
+                const post = await Post.findById(req.query.postId);
+                post.comment = post.comment.filter((id) => {
+                    return id != req.query.commentId;
+                });
+                post.save();
+                await Comment.deleteOne({_id: req.query.commentId});
+            }
+            return res.redirect('back');
+        }catch(err){
+            console.log(`Error: ${err}`);
+        }
+    })();
+}

@@ -41,6 +41,11 @@
                                         <p>
                                             <%= comment.content %>
                                         </p>
+                                        <% if(locals.user && locals.user.id == comment.user.id){ %>
+                                            <button>
+                                                <a href="/comments/delete/?postId=<%= i._id %>&commentId=<%= comment._id %>">Delete Comment</a>
+                                            </button>
+                                        <% } %>    
                                     </li>
                                 <% } %>    
                             </ul>
