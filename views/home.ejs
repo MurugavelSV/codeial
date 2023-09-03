@@ -23,6 +23,12 @@
                         <%= i.content %> 
                     </p>
 
+                    <% if(locals.user && locals.user.id == i.user.id){ %>
+                        <button>
+                            <a href="/posts/delete/<%= i._id %>">Delete Post</a>
+                        </button>
+                    <% } %>
+
                     <% if(i.comment.length != 0){ %>
                         <div class="post-comments-list">
                             <h3>Comments</h3>
