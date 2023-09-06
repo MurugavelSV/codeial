@@ -1,0 +1,15 @@
+<% for(let comment of i.comment){ %>
+    <li>
+        <h5>
+            <%= comment.user.name %>
+        </h5>
+        <p>
+            <%= comment.content %>
+        </p>
+        <% if(locals.user && locals.user.id == comment.user.id){ %>
+            <button>
+                <a href="/comments/delete/?postId=<%= i._id %>&commentId=<%= comment._id %>">Delete Comment</a>
+            </button>
+        <% } %>    
+    </li>
+<% } %>    

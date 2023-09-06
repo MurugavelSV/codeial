@@ -4,7 +4,20 @@ module.exports.profile = (req, res) => {
     return res.render('user_profile', {
         title: 'User Profile',
     });
-}
+};
+
+module.exports.showProfiles = (req, res) => {
+    (async () => {
+        await User.findById(req.params.id).then((user) => {
+            return res.render('friends_profile', {
+                title: user.name  + ' | Profile',
+                friend: user
+            }); 
+        }).catch((err) => {
+            console.log(`Error: ${err.message}`);
+        }); 
+    })();
+};
 
 module.exports.signup = (req, res) => {
     if(req.isAuthenticated()){

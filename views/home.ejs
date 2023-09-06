@@ -14,61 +14,23 @@
         <% } %>
         
         <ul>
-            <% for(let i of postList){ %>
-                <li class="post-content">
-                    <h5>
-                        <%= i.user.name %>
-                    </h5>
-                    <p>
-                        <%= i.content %> 
-                    </p>
-
-                    <% if(locals.user && locals.user.id == i.user.id){ %>
-                        <button>
-                            <a href="/posts/delete/<%= i._id %>">Delete Post</a>
-                        </button>
-                    <% } %>
-
-                    <% if(i.comment.length != 0){ %>
-                        <div class="post-comments-list">
-                            <h3>Comments</h3>
-                            <ul id="post-comments-<%= i._id %>">
-                                <% for(let comment of i.comment){ %>
-                                    <li>
-                                        <h5>
-                                            <%= comment.user.name %>
-                                        </h5>
-                                        <p>
-                                            <%= comment.content %>
-                                        </p>
-                                        <% if(locals.user && locals.user.id == comment.user.id){ %>
-                                            <button>
-                                                <a href="/comments/delete/?postId=<%= i._id %>&commentId=<%= comment._id %>">Delete Comment</a>
-                                            </button>
-                                        <% } %>    
-                                    </li>
-                                <% } %>    
-                            </ul>
-                        </div>
-                    <% } %>
-
-                    <div class="post-comments">
-                        <% if(locals.user) { %>
-                            <form action="/comments/create" id="new-comment-form" method="post">
-                                <textarea name="content" cols="30" rows="3" placeholder="Type here..."></textarea>
-                                <input type="hidden" name="post" value="<%= i._id %>">
-                                <input type="submit" value="Add Comment">
-                            </form>
-                        <% } %>
-                    </div>
-                    
-                </li>
-            <% } %>
+            <%- include('_posts', {postList}) %>
         </ul>  
 
     </section>
-
-        
+    
+    <% if(locals.user && all_users.length > 1){ %>
+        <section id="friends-list">
+            <h3>Friends</h3>
+            <% for(users of all_users){ %>
+                <% if(users.id != locals.user.id){ %>
+                    <p>
+                        <a style="color:black;" href="/user/profile/<%= users.id %>"><%= users.name %></a>
+                    </p>
+                <% } %>
+            <% } %>
+        </section>
+    <% } %>
 
 </div>
 
