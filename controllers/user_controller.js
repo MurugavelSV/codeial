@@ -19,6 +19,20 @@ module.exports.showProfiles = (req, res) => {
     })();
 };
 
+module.exports.updateProfile = (req, res) => {
+    (async () => {
+        try{
+            const user = await User.findById(req.user.id);
+            if(user){
+                await User.updateOne({_id: req.user.id}, req.body);
+                return res.redirect('back');
+            }
+        }catch(err){
+            console.log(`Error: ${err.message}`);
+        }
+    })();
+};
+
 module.exports.signup = (req, res) => {
     if(req.isAuthenticated()){
         return res.redirect('/user/profile');

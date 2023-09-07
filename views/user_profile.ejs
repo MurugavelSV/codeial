@@ -13,4 +13,26 @@
     <p>
         <%= user.password %>
     </p>
+
+    <% if(locals.user){ %>
+        <button id="update-button">Update Profile</button>
+
+        <form action="/user/update-profile" method="post">
+            <div>
+                <div>
+                    <input type="text" name="name" placeholder="Enter the new Username" value="<%= locals.user.name %>">
+                </div>
+    
+                <div>
+                    <input type="email" name="email" placeholder="Enter the new Email" value="<%= locals.user.email %>">
+                </div>
+    
+            </div>
+            <input type="submit" value="Update">
+        </form>
+    <% } %>
+
+    
+
 </div>
+<script src="/js/user_profile.js"></script>
