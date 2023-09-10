@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://muruvel1910:sri19.10vel@murugavel.bpdg3or.mongodb.net/codeial_development');
+mongoose.connect('url goes here');
 
 const db = mongoose.connection;
 
