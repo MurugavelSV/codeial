@@ -34,7 +34,7 @@ app.use(session({
         maxAge: (1000 * 60 * 100)
     },
     store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://muruvel1910:sri19.10vel@murugavel.bpdg3or.mongodb.net/codeial_development',
+        mongoUrl: 'url goes here',
         autoRemove: 'disabled'
     })
 }));
