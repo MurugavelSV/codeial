@@ -4,10 +4,10 @@
   "description": "A web app to interact with everyone similar to a social media web page",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "home-scss": "sass --no-source-map --watch assets/scss/home.scss assets/css/home.css", 
+    "start": "nodemon index",
+    "home-scss": "sass --no-source-map --watch assets/scss/home.scss assets/css/home.css",
     "layout-scss": "sass --no-source-map --watch assets/scss/layout.scss assets/css/layout.css",
-    "dev": "npm-run-all --parallel home-scss layout-scss start", 
+    "dev": "npm-run-all --parallel home-scss layout-scss start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -16,6 +16,7 @@
   "author": "Murugavel V",
   "license": "ISC",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "connect-mongo": "^5.0.0",
     "cookie-parser": "^1.4.6",
     "ejs": "^3.1.9",

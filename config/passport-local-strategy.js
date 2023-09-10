@@ -5,20 +5,21 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 passport.use(new LocalStrategy({
     usernameField: 'email',
-    passwordField: 'password'
-    },async (email, password, done) => {
+    passwordField: 'password',
+    passReqToCallback: true
+    },async (req, email, password, done) => {
         await User.findOne({
             email: email,
             password: password
         }).then((user) => {
             if(!user){
-                console.log('Invalid username/password');
+                req.flash('error', 'Invalid username/password');
                 return done(null, false);
             }else{
                 return done(null, user);
             }
         }).catch((err) => {
-            console.log('Error in finding user --> passport');
+            req.flash('error', 'Error in finding user');
             return done(err);
         });
 }));
@@ -35,7 +36,7 @@ passport.deserializeUser(async (id, done) => {
     await User.findById(id).then((user) => {
         return done(null, user);
     }).catch((err) => {
-        console.log('Error in finding user --> passport');
+        req.flash('error', 'Error in finding user');
         return done(err);        
     })
 });

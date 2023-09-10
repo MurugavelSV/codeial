@@ -19,9 +19,10 @@ router.post('/create', userController.create);
 router.post('/update-profile', userController.updateProfile);
 
 router.post('/create-session', passport.authenticate(
-    'local',{
-    successRedirect: '/user/profile',
-    failureRedirect: '/'}
+    'local',
+    {
+        failureRedirect: '/'
+    }
 ), userController.createSession);
 
 router.get('/sign-out', userController.destroySession);

@@ -14,7 +14,8 @@ module.exports.showProfiles = (req, res) => {
                 friend: user
             }); 
         }).catch((err) => {
-            console.log(`Error: ${err.message}`);
+            req.flash('error', 'Unexpected error occurred');
+            return res.redirect('back');
         }); 
     })();
 };
@@ -25,10 +26,12 @@ module.exports.updateProfile = (req, res) => {
             const user = await User.findById(req.user.id);
             if(user){
                 await User.updateOne({_id: req.user.id}, req.body);
+                req.flash('success', 'Updated successfully');
                 return res.redirect('back');
             }
         }catch(err){
-            console.log(`Error: ${err.message}`);
+            req.flash('error', 'Error in updating profile');
+            return res.redirect('back');
         }
     })();
 };
@@ -44,7 +47,7 @@ module.exports.signup = (req, res) => {
 
 module.exports.login = (req, res) => {
     if(req.isAuthenticated()){
-        return res.redirect('/');
+        return res.redirect('/user/profile');
     }
     return res.render('login', {
         title: 'Codeial | Login'
@@ -55,14 +58,15 @@ module.exports.create = (req, res) => {
     (async() => {
         const user = await User.findOne({email: req.body.email});
         if(user){
-            console.log('User already exists');
+            req.flash('error', 'User already exists');
             return res.redirect('back');
         }
 
         await User.create(req.body).then((user) => {
+            req.flash('success', 'User created successfully');
             return res.redirect('/user/login');
         }).catch((err) => {
-            console.log('Error in signing up the user');
+            req.flash('error', 'Error in signing up the user');
             return res.redirect('back');
         });
 
@@ -70,14 +74,17 @@ module.exports.create = (req, res) => {
 }
 
 module.exports.createSession = (req, res) => {
+    req.flash('success', 'Logged in successfully');
     return res.redirect('/');   
 };
 
 module.exports.destroySession = (req, res) => {
     req.logout((err) => {
         if(err){
-            return console.log(`Error: ${err.message}`);
+            req.flash('error', 'Error in signing out');
+            return res.redirect('/');
         }
+        req.flash('success', 'You have logged out!!');
         return res.redirect('/');
     });
 };

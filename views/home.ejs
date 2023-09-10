@@ -1,9 +1,6 @@
 <link rel="stylesheet" href="/css/home.css">
 
 <div id="app">
-    <h1>
-        Codeial / Home Page
-    </h1>
 
     <section id="feed-posts">
         <% if(locals.user) { %>
@@ -12,6 +9,8 @@
                 <input type="submit" value="Post">
             </form>
         <% } %>
+        
+        <h2>Posts</h2>
         
         <ul>
             <%- include('_posts', {postList}) %>
@@ -33,5 +32,3 @@
     <% } %>
 
 </div>
-
-  

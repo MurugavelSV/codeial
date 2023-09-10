@@ -12,11 +12,15 @@ module.exports.createComment = (req, res) => {
                     post: req.body.post
                 });
                 post.comment.push(comments._id);
-                post.save();   
+                post.save(); 
+                req.flash('success', 'Comment created successfully');
+                return res.redirect('back');  
             }
+            req.flash('error', 'Cannot create comment for invalid post');
             return res.redirect('back');
         }catch(err){
-            console.log(`Error: ${err.message}`);
+            req.flash('error', 'Error in creating comment');
+            return res.redirect('back');
         };
     })();
 }
@@ -33,11 +37,16 @@ module.exports.destroyComment = (req, res) => {
                     });
                     post.save();
                     await Comment.deleteOne({_id: req.query.commentId});
+                    req.flash('success', 'Comment deleted!');
+                    return res.redirect('back');
                 }
+                req.flash('error', 'Unauthorized to delete this comment');
+                return res.redirect('back');
             }
             return res.redirect('back');
         }catch(err){
-            console.log(`Error: ${err.message}`);
+            req.flash('error', 'Error in deleting comment');
+            return res.redirect('back');
         }
     })();
 }

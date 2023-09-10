@@ -1,0 +1,19 @@
+h1{
+    text-align: center;
+}
+
+#app{
+    height: 100vh;
+    display: flex;
+    #feed-posts{
+        width: 80%;
+        padding: 10px
+        // display: inline-block;
+    };
+    #friends-list{
+        width: 20%;
+        padding: 30px;
+        border-left: 1px solid lightgrey;
+        // display: inline-block;
+    }
+}
