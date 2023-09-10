@@ -46,6 +46,7 @@ passport.checkAuthenticated = (req, res, next) => {
         return next();
     }
 
+    req.flash('error', 'Unauthorized to do this action');
     return res.redirect('/user/signup');
 }
 
